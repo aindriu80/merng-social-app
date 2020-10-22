@@ -1,0 +1,17 @@
+{
+  "name": "merng-social-app",
+  "version": "1.0.0",
+  "description": "React GraphQL Social Media App MERNG Stack",
+  "main": "index.js",
+  "scripts": {
+  "start": "BROWSER=/opt/firefox/firefox react-scripts start",
+  "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aindriu Mac Giolla Eoin",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.18.2",
+    "graphql": "^15.3.0",
+    "mongoose": "^5.10.9"
+  }
+}
