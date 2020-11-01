@@ -9,9 +9,12 @@ const httpLink = createHttpLink({
   uri: "http://locatlhost:5000",
 });
 
-const client = new ApolloProvider({
+const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
+  fetchOptions: {
+    mode: "no-cors",
+  },
 });
 
 export default (
