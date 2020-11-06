@@ -6,6 +6,7 @@ const checkAuth = require("../../util/check-auth");
 module.exports = {
   Query: {
     async getPosts() {
+      console.log("get posts");
       try {
         const posts = await Post.find().sort({ createdAt: -1 });
         return posts;
@@ -28,9 +29,10 @@ module.exports = {
   },
   Mutation: {
     async createPost(_, { body }, context) {
+      console.log("create post");
       const user = checkAuth(context);
 
-      if (args.body.trim() === "") {
+      if (body.trim() === "") {
         throw new Error("Post body must not be empty");
       }
       // console.log(user);
