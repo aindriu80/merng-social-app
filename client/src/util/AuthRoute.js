@@ -4,8 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 
 function AuthRoute({ component: Component, ...rest }) {
-  // Removed the parenthesis around { user } because of TypeError: Object(...)(...) is undefined
-  const user = useContext({ AuthContext });
+  const { user } = useContext(AuthContext);
 
   return (
     <Route
@@ -16,4 +15,5 @@ function AuthRoute({ component: Component, ...rest }) {
     />
   );
 }
+
 export default AuthRoute;
