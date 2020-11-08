@@ -13,22 +13,19 @@ function SinglePost(props) {
   const { user } = useContext(AuthContext);
   console.log(postId);
 
-  //   const {
-  //     data: { getPost },
-  //   } = useQuery(FETCH_POST_QUERY, {
-  //     variables: {
-  //       postId,
-  //     },
-  //   });
-
-  const { data } = useQuery(FETCH_POST_QUERY);
+  const { data = {} } = useQuery(FETCH_POST_QUERY, {
+    variables: {
+      postId,
+    },
+  });
+  const thisPost = data.getPost;
 
   function deletePostCallback() {
     props.history.push("/");
   }
 
   let postMarkup;
-  if (!data.getPost) {
+  if (!thisPost) {
     postMarkup = <p>Loading Post...</p>;
   } else {
     const {
@@ -36,11 +33,11 @@ function SinglePost(props) {
       body,
       createdAt,
       username,
-      //   comments,
+      // comments,
       likes,
       likeCount,
       commentCount,
-    } = data.getPost;
+    } = thisPost;
 
     postMarkup = (
       <Grid>
@@ -83,12 +80,12 @@ function SinglePost(props) {
         </Grid.Row>
       </Grid>
     );
-    return postMarkup;
   }
+  return postMarkup;
 }
 const FETCH_POST_QUERY = gql`
   query($postId: ID!) {
-    getPost(postId: $postId) {
+    thisPost(postId: $postId) {
       id
       body
       createdAt
